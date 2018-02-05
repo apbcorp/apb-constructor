@@ -1,4 +1,4 @@
-core:
+document:
     resource: "@CoreBundle/Controller"
     prefix: /
     type:     annotation

@@ -2,13 +2,14 @@
 
 namespace Tests\Functional\CoreBundle\Controller;
 
+use CoreBundle\Entity\User;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\Core\FunctionalWebTestCase;
 use Tests\Fixtures\UserFixture;
 
 class UserControllerTest extends FunctionalWebTestCase
-{
+{    
     public function testGetAction()
     {
 

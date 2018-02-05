@@ -3,17 +3,13 @@ security:
         CoreBundle\User:
             algorithm: bcrypt
     providers:
-        in_memory:
-            entity:
-                class: CoreBundle\User
+        auth.provider.user:
+            id: auth.provider.user
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-
-        main:
-            anonymous: ~
-                pattern: ^/api(?!/v1\.0/login)
-                http_basic: ~
-                provider: in_memory
+        secured_area:
+            pattern: ^/api(?!/v1\.0/login)
+            stateless: true
+            simple_preauth:
+                authenticator: auth.authenticator
+            provider: auth.provider.user

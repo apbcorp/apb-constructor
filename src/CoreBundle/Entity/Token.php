@@ -7,12 +7,16 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Role
  * @package CoreBundle\Entity
+ * @ORM\Entity
  * @ORM\Table(name="token")
  */
 class Token
 {
+    const LIFETIME = '+1 hour';
+
     /**
      * @var int
+     * @ORM\Id
      * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */

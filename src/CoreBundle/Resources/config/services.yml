@@ -1,4 +1,24 @@
 services:
-#    core.example:
-#        class: CoreBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    auth.authenticator:
+        class: CoreBundle\Authenticator\ApiKeyAuthenticator
+        public: false
+
+    auth.provider.user:
+        class: CoreBundle\Service\ApiKeyUserProvider
+        arguments: ['@doctrine.orm.entity_manager']
+
+    core.factory.entity:
+        class: CoreBundle\Factory\EntityFactory
+
+    core.service.token:
+        class: CoreBundle\Service\TokenService
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@core.factory.entity'
+
+    core.container.cookie:
+        class: CoreBundle\Container\CookieContainer
+
+    security.access_listener:
+        class: CoreBundle\EventListner\AccessListner
+        arguments: ['@doctrine.orm.entity_manager', '@security.token_storage', '@core.service.token', '@core.container.cookie']

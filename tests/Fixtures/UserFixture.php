@@ -19,17 +19,19 @@ class UserFixture implements MySqlFixtureInterface
     {
         $admin = new User();
         $admin->setIsDeveloper(true)
-            ->setPassword(self::ADMIN_PASS)
+            ->setPassword(md5(self::ADMIN_PASS))
             ->setSalt(User::SALT)
             ->setUsername(self::ADMIN_LOGIN)
-            ->setMail(self::ADMIN_MAIL);
+            ->setMail(self::ADMIN_MAIL)
+            ->setIsActive(true);
 
         $user = new User();
-        $user->setPassword(self::USER_PASS)
+        $user->setPassword(md5(self::USER_PASS))
             ->setIsDeveloper(false)
             ->setUsername(self::USER_LOGIN)
             ->setSalt(User::SALT)
-            ->setMail(self::USER_MAIL);
+            ->setMail(self::USER_MAIL)
+            ->setIsActive(true);
 
         $entityManager->persist($admin);
         $entityManager->persist($user);

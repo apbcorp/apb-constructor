@@ -53,13 +53,15 @@ class FunctionalWebTestCase extends WebTestCase
 
     protected function loadFixtures(array $fixtures) : void
     {
+        $entityManager = $this->getEntityManager();
+
         foreach ($fixtures as $fixture) {
             if (!$fixture instanceof MySqlFixtureInterface) {
                 throw new \Exception('Fixture must implement MySqlFixtureInterface');
             }
 
-            $fixture->truncate($this->getEntityManager());
-            $fixture->truncate($this->getEntityManager());
+            $fixture->truncate($entityManager);
+            $fixture->execute($entityManager);
         }
     }
 }
