@@ -1,0 +1,19 @@
+security:
+    encoders:
+        CoreBundle\User:
+            algorithm: bcrypt
+    providers:
+        in_memory:
+            entity:
+                class: CoreBundle\User
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+                pattern: ^/api(?!/v1\.0/login)
+                http_basic: ~
+                provider: in_memory

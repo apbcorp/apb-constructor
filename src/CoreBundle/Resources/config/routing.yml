@@ -1,0 +1,4 @@
+core:
+    resource: "@CoreBundle/Controller"
+    prefix: /
+    type:     annotation
